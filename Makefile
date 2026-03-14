@@ -1,7 +1,12 @@
-.PHONY: dev test seed build clean
+.PHONY: dev test seed build clean dev-frontend dev-backend
 
-dev:
-	source .venv/bin/activate && uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+dev: dev-backend
+
+dev-backend:
+	source .venv/bin/activate && uvicorn app.main:app --reload --host 0.0.0.0 --port 3007
+
+dev-frontend:
+	cd frontend && npm start
 
 test:
 	source .venv/bin/activate && python -m pytest tests/ -v --tb=short
@@ -23,7 +28,9 @@ db.close()"
 
 build:
 	pip install -r requirements.txt
+	cd frontend && npm install && npm run build
 
 clean:
 	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null; \
-	rm -f medbridge.db
+	rm -f medbridge.db; \
+	rm -rf frontend/build
