@@ -1,6 +1,9 @@
 node_modules/
 __pycache__/
 *.pyc
+*.py[cod]
+*$py.class
+*.so
 .env
 .venv/
 venv/
@@ -14,3 +17,10 @@ target/
 .gradle/
 *.class
 .DS_Store
+*.db
+*.sqlite3
+.idea/
+.vscode/
+*.swp
+*.swo
+Thumbs.db
